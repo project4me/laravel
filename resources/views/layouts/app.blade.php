@@ -1,25 +1,99 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <title>Title</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <div class="container">
-            @yield('content')
-        </div>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    </body>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar has-shadow">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="https://bulma.io">
+                    <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+                </a>
+
+                <div class="navbar-burger burger" data-target="navMenuDocumentation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div id="navMenuDocumentation" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item is-hidden-mobile" href="#">
+                        Learn
+                    </a>
+                    <a class="navbar-item is-hidden-mobile" href="#">
+                        Discuss
+                    </a>
+                    <a class="navbar-item is-hidden-mobile" href="#">
+                        Share
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    @guest
+                    <a class="navbar-item" href="{{ route('login') }}">
+                        Login
+                    </a>
+                    <a class="navbar-item" href="{{ route('register') }}">
+                        Join the Community
+                    </a>
+                    @else
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link" href="#">
+                            Thoeng
+                        </a>
+                        <div class="navbar-dropdown is-right">
+                            <a class="navbar-item" href="#">
+                                Profile
+                            </a>
+                            <a class="navbar-item" href="#">
+                                Notifications
+                            </a>
+                            <a class="navbar-item" href="#">
+                                Settings
+                            </a>
+                        
+                            <hr class="navbar-divider">
+                            <a class="navbar-item" href="#">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                    @endguest
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link" href="#">
+                            {{ strtoupper(app()->getLocale()) }}
+                        </a>
+                        <div class="navbar-dropdown is-right">
+                            @foreach (config('translatable.locales') as $lang => $language)
+                            @if ($lang != app()->getLocale())
+                            <a class="navbar-item" href="{{ route('lang.switch', $lang) }}">
+                                {{ $language }}
+                            </a>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        @yield('content')
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
 </html>

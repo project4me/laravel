@@ -10,14 +10,14 @@ return [
     | Contains an array with the applications available locales.
     |
     */
-    /* 'locales' => [
-        'en',
-        'fr',
-        'es' => [
-            'MX', // mexican spanish
-            'CO', // colombian spanish
-        ],
-    ], */
+    // 'locales' => [
+    //     'en',
+    //     'fr',
+    //     'es' => [
+    //         'MX', // mexican spanish
+    //         'CO', // colombian spanish
+    //     ],
+    // ],
     'locales' => [
         'th' => 'Thai',
         'en' => 'English',

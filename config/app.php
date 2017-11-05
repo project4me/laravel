@@ -65,7 +65,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    // 'timezone' => 'UTC',
+    'timezone' => 'Asia/Bangkok',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +168,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Dimsav\Translatable\TranslatableServiceProvider::class,
 
         /*
          * Application Service Providers...
